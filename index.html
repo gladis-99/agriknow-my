@@ -30,6 +30,13 @@
     .tp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}.tp-step{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fffefa}.tp-step b{display:block;font:10px 'DM Mono',monospace;color:var(--green);letter-spacing:.12em;margin-bottom:8px}.tp-step p{margin:0}
     .tp-help a{color:var(--green)}.tp-next{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:12px;color:var(--muted)}.tp-next a{color:var(--green);font-weight:600;text-decoration:none}.tp-next a:hover{text-decoration:underline}
     @media(max-width:760px){.tp-grid,.tp-steps{grid-template-columns:1fr}.tp-hero{grid-template-columns:1fr;padding:24px}.tp-icon{display:none}}
+    .chat-fab{position:fixed;right:24px;bottom:24px;z-index:15;display:flex;align-items:center;gap:9px;background:var(--green);color:#fff;border:0;border-radius:99px;padding:13px 18px;font-size:13px;font-weight:600;box-shadow:0 10px 28px #18261f40;transition:transform .2s,background .2s}.chat-fab:hover{transform:translateY(-3px);background:#1d573f}.chat-fab .pulse{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 #c5e98a99;animation:pulse 2s infinite}@keyframes pulse{70%{box-shadow:0 0 0 9px #c5e98a00}100%{box-shadow:0 0 0 0 #c5e98a00}}
+    .chat-panel{position:fixed;right:24px;bottom:86px;z-index:16;width:370px;height:min(560px,calc(100vh - 120px));background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px #18261f33;display:none;flex-direction:column;overflow:hidden}.chat-panel.open{display:flex;animation:panelIn .3s ease both}
+    .chat-head{background:var(--green);color:#f4f3e9;padding:14px 16px;display:flex;align-items:center;gap:11px}.chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--lime);color:var(--green);display:grid;place-items:center;font-size:17px;flex:none}.chat-head strong{display:block;font-size:13px}.chat-head small{font:9px 'DM Mono',monospace;letter-spacing:.08em;color:#c9d8ca}.chat-close{margin-left:auto;background:transparent;border:0;color:#fff;font-size:20px;line-height:1;padding:4px 6px;border-radius:6px}.chat-close:hover{background:#ffffff1a}
+    .chat-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f7f5ef}.msg{max-width:86%;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.65}.msg.bot{background:#fff;border:1px solid var(--line);border-top-left-radius:4px;align-self:flex-start;color:#2c3a30}.msg.user{background:var(--green);color:#fff;border-top-right-radius:4px;align-self:flex-end}.msg a{color:var(--green);font-weight:600}.msg b{color:var(--green)}.typing{display:flex;gap:4px;align-items:center}.typing i{width:6px;height:6px;border-radius:50%;background:#9aa69c;animation:blink 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes blink{50%{opacity:.25}}
+    .chat-chips{display:flex;flex-wrap:wrap;gap:6px;padding:9px 12px 0;background:var(--white);border-top:1px solid var(--line)}.chip{border:1px solid #cfdcc8;background:#f2f6ee;color:var(--green);border-radius:99px;padding:6px 10px;font-size:11px}.chip:hover{background:#e6efe0}
+    .chat-form{display:flex;gap:8px;padding:10px 12px 12px;background:var(--white)}.chat-form input{flex:1;border:1px solid var(--line);border-radius:99px;padding:10px 14px;font:inherit;font-size:12px;outline:none}.chat-form input:focus{border-color:var(--green)}.chat-form button{border:0;background:var(--green);color:#fff;border-radius:99px;padding:0 15px;font-size:12px;font-weight:600}.chat-note{font-size:9px;color:var(--muted);text-align:center;padding:0 12px 10px;background:var(--white)}
+    @media(max-width:760px){.chat-panel{right:10px;left:10px;width:auto;bottom:78px;height:calc(100vh - 100px)}.chat-fab{right:14px;bottom:14px}}
     @media(max-width:760px){.shell{padding:0 18px}.topbar{height:64px}.top-right .status{display:none}.hero{padding:46px 0 35px;grid-template-columns:1fr;gap:22px}.hero-aside{margin:0}.nav{overflow:auto}.nav-note{display:none}.metrics{grid-template-columns:1fr 1fr}.grid-main,.agri-grid{grid-template-columns:1fr}.agri-hero{grid-template-columns:1fr;padding:25px}.agri-hero .big-leaf{display:none}.section-head{align-items:start;gap:10px;flex-direction:column}.chart{height:auto;min-height:205px}.year-bars{gap:2px;padding-left:0;padding-right:0}.year-column{padding:8px 5px}.year-bar-label{font-size:7px}.year-col-head{font-size:10px}.topic-list{grid-template-columns:1fr 1fr}footer{flex-direction:column}.stamp{white-space:normal}.intro-orbit{right:-45%;opacity:.7}.intro h1{font-size:clamp(51px,14vw,82px)}.state-map{min-width:860px}.map-wrap{overflow-x:auto}.map-legend{flex-wrap:wrap}.map-caption{margin-left:0}}
   </style>
 </head>
@@ -63,6 +70,14 @@
     <section class="topic-page" id="topicPage" aria-live="polite"></section>
   </main>
   <footer class="shell"><div class="source">Data source: Department of Statistics Malaysia (DOSM), <em>ICT Use and Access by Individuals and Households Survey Report 2025</em>, Table 6.4 (2022–2025 transcription supplied with the assignment). These data describe households, not farmers; they do not establish effects on farmer behavior. <a href="https://www.dosm.gov.my/uploads/release-content/file_20260423113242.pdf" target="_blank" rel="noreferrer">View source ↗</a></div><div class="stamp">STUDENT CONCEPT · NOT A DEPLOYED APP</div></footer>
+  <button class="chat-fab" id="chatFab" aria-controls="chatPanel" aria-expanded="false"><span class="pulse"></span>Ask AgriKnow</button>
+  <section class="chat-panel" id="chatPanel" role="dialog" aria-label="AgriKnow assistant">
+    <div class="chat-head"><div class="chat-avatar">✳</div><div><strong>AgriKnow Assistant</strong><small>DEMO · ANSWERS FROM THIS SITE</small></div><button class="chat-close" id="chatClose" aria-label="Close chat">×</button></div>
+    <div class="chat-body" id="chatBody" aria-live="polite"></div>
+    <div class="chat-chips" id="chatChips"></div>
+    <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Ask about the data or smart farming…" aria-label="Your question"><button type="submit">Send</button></form>
+    <div class="chat-note">Demo assistant for a student project · not a real advisory service</div>
+  </section>
   <script>
     const national={2022:{overall:96.0,urban:98.1,rural:89.1},2023:{overall:96.4,urban:98.4,rural:89.8},2024:{overall:96.8,urban:98.8,rural:90.3},2025:{overall:97.1,urban:99.0,rural:90.7}};
     const stateGaps={2022:{Johor:1.6,Kedah:4.4,Kelantan:2.3,Melaka:2.2,'Negeri Sembilan':8.1,Pahang:1.8,Perak:5.6,Perlis:5.9,'Pulau Pinang':2.4,Sabah:16.5,Sarawak:18.8,Selangor:2.8,Terengganu:2.9,'W.P. Labuan':3.2},2023:{Johor:1.7,Kedah:4.3,Kelantan:2.2,Melaka:2.2,'Negeri Sembilan':7.9,Pahang:2.2,Perak:5.2,Perlis:6.0,'Pulau Pinang':0.2,Sabah:16.6,Sarawak:18.5,Selangor:1.9,Terengganu:3.0,'W.P. Labuan':3.2},2024:{Johor:1.4,Kedah:4.3,Kelantan:1.9,Melaka:2.4,'Negeri Sembilan':7.9,Pahang:2.0,Perak:5.2,Perlis:5.9,'Pulau Pinang':0.6,Sabah:16.1,Sarawak:18.5,Selangor:1.9,Terengganu:3.0,'W.P. Labuan':3.1},2025:{Johor:1.3,Kedah:4.3,Kelantan:1.8,Melaka:2.4,'Negeri Sembilan':7.9,Pahang:2.0,Perak:5.2,Perlis:5.9,'Pulau Pinang':0.6,Sabah:16.2,Sarawak:18.4,Selangor:1.8,Terengganu:3.0,'W.P. Labuan':2.5}};
@@ -153,6 +168,49 @@
     }
     window.addEventListener('hashchange',()=>route());
     if(location.hash.length>1){document.getElementById('intro').classList.add('leaving');route();}
+    // ---- Demo assistant (rule-based, uses this page's data) ----
+    const stateAlias={'johor':'Johor','kedah':'Kedah','kelantan':'Kelantan','melaka':'Melaka','malacca':'Melaka','negeri sembilan':'Negeri Sembilan','n9':'Negeri Sembilan','pahang':'Pahang','perak':'Perak','perlis':'Perlis','pulau pinang':'Pulau Pinang','penang':'Pulau Pinang','sabah':'Sabah','sarawak':'Sarawak','selangor':'Selangor','terengganu':'Terengganu','labuan':'W.P. Labuan','kuala lumpur':'KL','kl':'KL','putrajaya':'Putrajaya'};
+    const tLink=(slug,label)=>'<a href="#'+slug+'">'+label+' →</a>';
+    function findState(q){for(const k of Object.keys(stateAlias).sort((a,b)=>b.length-a.length)){if(new RegExp('(^|[^a-z])'+k+'([^a-z]|$)').test(q))return stateAlias[k]}return null}
+    function findYear(q){const m=q.match(/20(22|23|24|25)/);return m?+m[0]:null}
+    const has=(q,words)=>words.some(w=>q.includes(w));
+    function answer(raw){
+      const q=raw.toLowerCase().trim(), yr=findYear(q), y=yr||2025, st=findState(q);
+      if(!q) return "Please type a question.";
+      if(st){
+        if(st==='KL'||st==='Putrajaya') return "DOSM does not give a rural figure for "+(st==='KL'?'Kuala Lumpur':'Putrajaya')+", so we cannot show an urban–rural gap there. It is almost fully urban.";
+        const g=stateGaps[y][st], g22=stateGaps[2022][st], diff=(g-g22).toFixed(1);
+        let t="In <b>"+y+"</b>, the urban–rural gap in household internet access in <b>"+st+"</b> was <b>"+g.toFixed(1)+" percentage points</b>.";
+        if(!yr) t+=" Since 2022 it changed by "+(diff>0?'+':'')+diff+" points.";
+        const rank=Object.entries(stateGaps[y]).sort((a,b)=>b[1]-a[1]).findIndex(e=>e[0]===st)+1;
+        return t+" That is number "+rank+" of 14 states with data (1 = biggest gap).";
+      }
+      if(has(q,['hello','hi ','hi!','hey','你好','您好'])||q==='hi') return "Hi! I can explain the internet access data in this story or the four smart-farming topics. What would you like to know?";
+      if(has(q,['thank','谢谢','thx'])) return "You're welcome! Ask me anything else about the data or smart farming.";
+      if(has(q,['biggest','largest','highest','widest','worst','最大'])) {const top=Object.entries(stateGaps[y]).sort((a,b)=>b[1]-a[1]).slice(0,3);return "In "+y+", the biggest urban–rural gaps were in "+top.map(e=>'<b>'+e[0]+'</b> ('+e[1].toFixed(1)+' pp)').join(', ')+". Sabah and Sarawak are far above other states.";}
+      if(has(q,['smallest','lowest','best','narrow','最小'])) {const low=Object.entries(stateGaps[y]).sort((a,b)=>a[1]-b[1]).slice(0,3);return "In "+y+", the smallest gaps were in "+low.map(e=>'<b>'+e[0]+'</b> ('+e[1].toFixed(1)+' pp)').join(', ')+".";}
+      if(has(q,['source','dosm','where does the data','data from','来源'])) return "The data come from DOSM's <i>ICT Use and Access by Individuals and Households Survey Report 2025</i>, Table 6.4, covering 2022–2025. State boundaries also come from DOSM.";
+      if(has(q,['limit','farmer data','cause','causal','accurate','局限'])) return "Important limit: these numbers describe <b>households</b>, not farmers. They do not measure farmers' connectivity, smart-agriculture awareness or adoption, and they do not show causes.";
+      if(has(q,['trend','change','increase','improv','grow','over time','变化','趋势'])) return "Access is rising. Rural households went from <b>89.1%</b> (2022) to <b>90.7%</b> (2025), up 1.6 points. Urban went from 98.1% to 99.0%, so the gap narrowed slightly, from 9.0 to 8.3 points.";
+      if(has(q,['rural','urban','access','internet','connect','overall','national','gap','divide','网络','城乡','鸿沟'])){const d=national[y];return "In <b>"+y+"</b>: overall household internet access was <b>"+d.overall.toFixed(1)+"%</b>, urban <b>"+d.urban.toFixed(1)+"%</b>, rural <b>"+d.rural.toFixed(1)+"%</b>. The urban–rural gap was <b>"+(d.urban-d.rural).toFixed(1)+" points</b>.";}
+      if(has(q,['pest','disease','price','虫','价格'])) return "Sensors and apps give information, but they cannot stop pests or raise market prices on their own. For pest problems, contact your district agriculture office (DOA). See "+tLink('digital-services','Digital agricultural services')+".";
+      if(has(q,['weather','rain','monsoon','forecast','flood','storm','天气','下雨','洪水'])) return "Check MetMalaysia's 7-day forecast and warnings before planting, spraying or adding fertiliser. Heavy rain can wash fertiliser away. Before the monsoon, clear drains and watch flood alerts. "+tLink('weather','Weather and alerts');
+      if(has(q,['irrigat','water','sensor','soil','moisture','drip','fertigation','灌溉','土壤','传感器'])) return "A soil moisture sensor sits in the root zone and shows how wet the soil is. If it's drier than your set level, water; if still wet, wait. Start with one sensor in one plot. "+tLink('irrigation','Precision irrigation');
+      if(has(q,['satellite','drone','ndvi','remote','map','image','卫星','无人机','遥感'])) return "Satellites such as Sentinel-2 give free images every few days. NDVI turns them into a plant-health map. Drones give sharper images. Clouds can block satellites, so always check on the ground. "+tLink('remote-sensing','Remote sensing for fields');
+      if(has(q,['app','online','digital','sell','market','training','course','scam','subsid','数字','培训','补贴'])) return "Use official sources first: DOA for farming advice, MARDI for technology and training, FAMA for marketing. Never share bank details or passwords. "+tLink('digital-services','Digital agricultural services');
+      if(has(q,['help','contact','who','support','office','advice','联系','帮助'])) return "Good places to start: your district agriculture office (DOA), MARDI for farm technology, FAMA for marketing, and MetMalaysia for weather. Each topic page has a 'Where to get help' list.";
+      if(has(q,['what is','about','agriknow','project','purpose','this site','这个','项目'])) return "<b>AgriKnow MY</b> is a student science-communication project (SQJ7006). Part 1 shows the urban–rural internet gap with DOSM data. Part 2 is a learning concept that helps smallholders understand smart agriculture.";
+      return "Sorry, I'm a simple demo and I don't know that yet. Try asking about a state (e.g. “Sabah gap 2023”), rural internet access, or one of the four topics: weather, irrigation, satellites and drones, or digital services.";
+    }
+    const chatPanel=document.getElementById('chatPanel'),chatBody=document.getElementById('chatBody'),chatInput=document.getElementById('chatInput'),chatFab=document.getElementById('chatFab');
+    function addMsg(html,who){const d=document.createElement('div');d.className='msg '+who;if(who==='user')d.textContent=html;else d.innerHTML=html;chatBody.appendChild(d);chatBody.scrollTop=chatBody.scrollHeight;return d}
+    function ask(text){if(!text.trim())return;addMsg(text,'user');const t=addMsg('<span class="typing"><i></i><i></i><i></i></span>','bot');setTimeout(()=>{t.innerHTML=answer(text);chatBody.scrollTop=chatBody.scrollHeight},550+Math.random()*400)}
+    function toggleChat(open){chatPanel.classList.toggle('open',open);chatFab.setAttribute('aria-expanded',open);if(open){if(!chatBody.children.length)addMsg("Hi, I'm the AgriKnow demo assistant 🌱 Ask me about Malaysia's urban–rural internet gap or smart farming for smallholders.",'bot');setTimeout(()=>chatInput.focus(),50)}}
+    chatFab.addEventListener('click',()=>toggleChat(!chatPanel.classList.contains('open')));
+    document.getElementById('chatClose').addEventListener('click',()=>toggleChat(false));
+    document.getElementById('chatForm').addEventListener('submit',e=>{e.preventDefault();const v=chatInput.value;chatInput.value='';ask(v)});
+    document.getElementById('chatChips').innerHTML=['Which state has the biggest gap?','Rural access in 2025','How does a soil sensor help?','Where can farmers get help?'].map(c=>'<button class="chip" type="button">'+c+'</button>').join('');
+    document.getElementById('chatChips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)ask(b.textContent)});
     render();
   </script>
 </body>
